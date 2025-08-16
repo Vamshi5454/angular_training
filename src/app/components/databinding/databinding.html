@@ -1,0 +1,108 @@
+<h3 class="text-center">Let's Learn DataBinding</h3>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>My Name is: {{ myName }}</div>
+  <div>My Name is: <span [innerText]="myName"></span></div>
+  <div>My Name is: <span bind-innerText="myName"></span></div>
+  <!-- 
+  <img src="{{ img_url }}" width="300" height="300" class="mx-1" />
+  <img [src]="img_url" width="300" height="300" class="mx-1" />
+  <img bind-src="img_url" width="300" height="300" class="mx-1 my-2" /> -->
+
+  <!-- <div>
+    <input placeholder="Enter something..." value="mobile" />
+    1 way: <input value="{{ myName }}" class="mx-2" /> 1 way:
+    <input [value]="myName" class="mx-2" /> 1 way:<input
+      bind-value="myName"
+      class="mx-2"
+    />
+     2 way:<input [(ngModel)]="myName" class="mx-2" /> -->
+  <!-- </div> -->
+
+  <div>Interpolation VS property Binding</div>
+  <button class="btn btn-primary" (click)="addToCart()">Add To Cart</button>
+  <button class="btn btn-primary mx-2" on-click="addToCart()">
+    Add To Cart
+  </button>
+  <!-- <button class="btn btn-primary mx-2" disabled>Add To Cart</button> -->
+  <button class="btn btn-primary mx-2" disabled="{{ flag }}">
+    Add To Cart
+  </button>
+  <button class="btn btn-primary mx-2" [disabled]="flag">Add To Cart</button>
+  <button class="btn btn-primary mx-2" bind-disabled="flag">Add To Cart</button>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div [hidden]="!flag">
+    1. Have a paragraph & a toggle button, on click of the button control the
+    visibility(Show/Hide) of the paragraph
+  </div>
+  <button class="btn btn-primary" (click)="onClickToggle()">SHOW/HIDE</button>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>
+    2. Create a text-area with maxLength=100, as the user keeps typing display
+    updated Remaining characters.
+  </div>
+  <textarea maxlength="100" (input)="onTextChange($event)"></textarea>
+  <div>Remaining Chars: {{ count }}</div>
+
+  <div class="border border-3 rounded-3 p-2 m-2">
+    <label for="state">State</label>
+    <select id="state" class="form-select" (change)="onStateChange($event)">
+      <option value="" disabled selected>Select a state</option>
+      <option value="Andhra Pradesh">Andhra Pradesh</option>
+      <option value="Delhi">Delhi</option>
+      <option value="Gujarat">Gujarat</option>
+      <option value="Karnataka">Karnataka</option>
+      <option value="Maharashtra">Maharashtra</option>
+      <option value="Tamil Nadu">Tamil Nadu</option>
+      <option value="Telangana">Telangana</option>
+      <option value="Uttar Pradesh">Uttar Pradesh</option>
+      <option value="West Bengal">West Bengal</option>
+    </select>
+
+    <div class="mt-2">Selected: {{ selectedState || "—" }}</div>
+  </div>
+
+  <div>
+    <input
+      [type]="isPassword ? 'password' : 'text'"
+      placeholder="Enter password"
+    />
+    <button (click)="togglePassword()">
+      {{ isPassword ? "Show" : "Hide" }}
+    </button>
+  </div>
+
+  <div>
+    <h4>Counter: {{ count1 }}</h4>
+
+    <button (click)="increment()">Increment</button>
+    <button (click)="decrement()">Decrement</button>
+    <button (click)="reset()">Reset</button>
+  </div>
+
+  <div class="border border-3 rounded-3 p-3 m-2">
+    <h4>Temperature Converter</h4>
+
+    <div>
+      <label for="celsius">Celsius (°C)</label>
+      <input
+        id="celsius"
+        type="number"
+        [(ngModel)]="celsius"
+        (input)="convertToFahrenheit()"
+      />
+    </div>
+
+    <div>
+      <h3>Fahrenheit : {{ fahrenheit }}</h3>
+    </div>
+    <!-- <div class="mt-3">
+      <h5 *ngIf="fahrenheit !== null">Fahrenheit: {{ fahrenheit }} °F</h5>
+    </div> -->
+   
+  </div>
+</div>
