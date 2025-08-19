@@ -32,23 +32,23 @@
   <button class="btn btn-primary mx-2" bind-disabled="flag">Add To Cart</button>
 </div>
 
-<div class="border border-3 rounded-3 p-2 m-2">
-  <div [hidden]="!flag">
+<div>
+  <h3 [hidden]="!flag">
     1. Have a paragraph & a toggle button, on click of the button control the
     visibility(Show/Hide) of the paragraph
-  </div>
-  <button class="btn btn-primary" (click)="onClickToggle()">SHOW/HIDE</button>
+  </h3>
+  <button (click)="onClickToggle()">SHOW/HIDE</button>
 </div>
 
-<div class="border border-3 rounded-3 p-2 m-2">
+<div>
   <div>
     2. Create a text-area with maxLength=100, as the user keeps typing display
     updated Remaining characters.
   </div>
-  <textarea maxlength="100" (input)="onTextChange($event)"></textarea>
-  <div>Remaining Chars: {{ count }}</div>
+  <textarea maxlength="100" [(ngModel)]="message"></textarea>
+  <div>Remaining Chars: {{ 100 - message.length }}</div>
 
-  <div class="border border-3 rounded-3 p-2 m-2">
+  <div>
     <label for="state">State</label>
     <select id="state" class="form-select" (change)="onStateChange($event)">
       <option value="" disabled selected>Select a state</option>
@@ -100,9 +100,5 @@
     <div>
       <h3>Fahrenheit : {{ fahrenheit }}</h3>
     </div>
-    <!-- <div class="mt-3">
-      <h5 *ngIf="fahrenheit !== null">Fahrenheit: {{ fahrenheit }} °F</h5>
-    </div> -->
-   
   </div>
 </div>

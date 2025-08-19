@@ -8,13 +8,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './databinding.css',
 })
 export class Databinding {
-  myName: string = 'Virat Kohli';
+  myName: string = 'virat';
   img_url: string = 'https://shorturl.at/Pit2d';
 
   addToCart() {
     alert('Your Item is adde to Cart!!!');
   }
-  flag: boolean = false;
+  flag: boolean = true;
   onClickToggle() {
     this.flag = !this.flag;
   }
@@ -23,12 +23,14 @@ export class Databinding {
   maxChars: number = 100;
   count: number = this.maxChars;
 
+  message: String = '';
+
   onTextChange(event: any) {
     const enteredText = event.target.value;
     this.count = this.maxChars - enteredText.length;
   }
 
-  selectedState: string | null = null;
+  selectedState: string | null = null; //3rd question
 
   onStateChange(event: Event) {
     const select = event.target as HTMLSelectElement;
@@ -40,6 +42,8 @@ export class Databinding {
   togglePassword() {
     this.isPassword = !this.isPassword;
   }
+
+  
   count1: number = 0; //6th question - counter
 
   increment() {

@@ -1,0 +1,222 @@
+<h3 class="text-center">Let's Learn Directives</h3>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>*ngIf Before angular 17</div>
+  <input type="number" [(ngModel)]="num" />
+
+  <div *ngIf="num % 2 === 0">{{ num }} is Even Number</div>
+  <div *ngIf="num % 2 !== 0">{{ num }} is Odd Number</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>If After angular 17</div>
+  <input type="number" [(ngModel)]="num" />
+
+  @if(num%2 === 0){
+  <div>{{ num }} is Even Number</div>
+  }@else {
+  <div>{{ num }} is Odd Number</div>
+  }
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <input type="number" [(ngModel)]="num" />
+
+  @switch (num) { @case (1) {
+  <h1>Monday</h1>
+  } @case (2) {
+  <h1>Tuesday</h1>
+  } @case (3) {
+  <h1>Wednesday</h1>
+  } @case (4) {
+  <h1>Thursday</h1>
+  } @case (5) {
+  <h1>Friday</h1>
+  } @case (6) {
+  <h1>Saturday</h1>
+  } @case (7) {
+  <h1>Sunday</h1>
+  } @default {
+  <h1>Not a Valid number</h1>
+  } }
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>States List:</div>
+  <ol>
+    @for(state of statesArr;track $index){
+    <li>{{ state }}</li>
+    }
+  </ol>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>States Dropdown:</div>
+  <select>
+    @for(state of statesArr;track $index){
+    <option>{{ state }}</option>
+    }
+  </select>
+  <select>
+    @for (item of statesArr; track $index) {
+    <option [value]="item">{{ item }}</option>
+    } @empty {
+    <option disabled>No options available</option>
+    }
+  </select>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>If vs Hidden</div>
+
+  <h1 [hidden]="!flag">Helooooooooooooooo</h1>
+
+  @if(flag){
+  <h1>Hiiiiiiiiiiiiiiiiiiiiiiiiiii</h1>
+  }
+  <button class="btn btn-primary" (click)="flag = !flag">Toggle</button>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <div>Employee Data in Table</div>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Sl No.</th>
+        <th>Emp Id</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Gender</th>
+        <th>isFirst?</th>
+        <th>isLast?</th>
+        <th>isEven?</th>
+        <th>isOdd?</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(emp of employees;track emp.id){
+      <tr>
+        <td>{{ $index + 1 }}</td>
+        <td>{{ emp.id }}</td>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.sal }}</td>
+        <td>{{ emp.gender }}</td>
+        <td>{{ $first }}</td>
+        <td>{{ $last }}</td>
+        <td>{{ $even }}</td>
+        <td>{{ $odd }}</td>
+        <td>{{ $count }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <h4>ngStyle Directive : To Apply style conditionally</h4>
+
+  <input type="number" [(ngModel)]="num" />
+  <p [style.color]="num % 2 == 0 ? 'blue' : 'red'">
+    Text color is conditionally applied
+  </p>
+  <p [style.fontSize.px]="num % 2 == 0 ? 48 : 24">Add style with unit</p>
+  <p [style.background-color]="flag ? 'green' : 'blue'">
+    Add style conditionally
+  </p>
+  <div [ngStyle]="num % 2 == 0 ? myStyle1 : myStyle2">
+    NgStyle for multiple values
+  </div>
+  <div [ngStyle]="myFunction()">NgStyle for multiple values</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <h4>ngClass is used to apply css classes conditionally</h4>
+
+  <input type="number" [(ngModel)]="num" />
+  <button
+    class="btn m-2"
+    [ngClass]="num % 2 == 0 ? 'btn-success' : 'btn-danger'"
+  >
+    Class Binding example
+  </button>
+</div>
+
+<div>
+  <h2>Userss</h2>
+  <div>
+    <button (click)="flag = !flag">Switch</button>
+
+    @if (flag) {
+    <table class="table table-bordered table-striped">
+      <thead class="table-light">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Company</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (u of data; track u.id) {
+        <tr>
+          <td>{{ u.id }}</td>
+          <td>{{ u.name }}</td>
+          <td>{{ u.username }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.address.city }}</td>
+          <td>{{ u.company.name }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    } @else {
+    <div>
+      @for (u of data; track u.id) {
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ u.name }}</h5>
+            <h6 class="card-subtitle">{{ u.username }}</h6>
+            <p class="card-text">Email:{{ u.email }}</p>
+            <p class="card-text">Phone:{{ u.phone }}</p>
+            <p class="card-text">City:{{ u.address.city }}</p>
+            <p class="card-text">Company:{{ u.company.name }}</p>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>
+
+<div>
+  <h2>Employees</h2>
+  <table class="table table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Salary</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (e of employees1; track e.id) {
+      <tr>
+        <td>{{ e.id }}</td>
+        <td>{{ e.name }}</td>
+        <td>{{ e.role }}</td>
+        <td>{{ e.salary }}</td>
+        <td>{{ e.status }}</td>
+      </tr>
+
+      }
+    </tbody>
+  </table>
+</div>

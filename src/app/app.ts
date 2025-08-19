@@ -6,10 +6,11 @@ import { Carousel } from './components/carousel/carousel';
 import { Body } from './components/body/body';
 import { Footer } from './components/footer/footer';
 import { Databinding } from './components/databinding/databinding';
+import { Directives } from './components/directives/directives';
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, Categories, Carousel, Body, Footer, Databinding],
+  imports: [Navbar, Categories, Carousel, Footer,Directives],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
