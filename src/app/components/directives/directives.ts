@@ -273,8 +273,6 @@ export class Directives {
     },
   ];
 
-  
-
   employees1 = [
     { id: 1, name: 'John', role: 'Manager', salary: 85000, status: 'Active' },
     {

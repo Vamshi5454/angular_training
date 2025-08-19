@@ -177,7 +177,7 @@
     <div>
       @for (u of data; track u.id) {
       <div class="col">
-        <div class="card h-100">
+        <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ u.name }}</h5>
             <h6 class="card-subtitle">{{ u.username }}</h6>
@@ -212,8 +212,10 @@
         <td>{{ e.id }}</td>
         <td>{{ e.name }}</td>
         <td>{{ e.role }}</td>
-        <td>{{ e.salary }}</td>
-        <td>{{ e.status }}</td>
+        <td [ngStyle]="{ color: e.salary > 50000 ? 'green' : 'red' }">
+          {{ e.salary }}
+        </td>
+        <td [ngClass]="">{{ e.status }}</td>
       </tr>
 
       }
