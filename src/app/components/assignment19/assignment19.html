@@ -1,0 +1,42 @@
+<div class="row">
+  <input
+    type="text"
+    class="form-control my-2 border-3"
+    placeholder="What Are you searching Today?"
+    [(ngModel)]="title"
+  />
+  <button (click)="fileterdData()">Search</button>
+</div>
+<button class="btn-primary" (click)="fileterByLowest()">
+  filter by lowest price
+</button>
+<button class="btn-primary" (click)="fileterByHighest()">
+  filter by Highest price
+</button>
+
+<div class="row">
+  @for (u of filtered| paginate: { itemsPerPage: 3, currentPage: p}; track u.id)
+  {
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ u.title }}</h5>
+        <h6 class="card-subtitle">{{ u.category }}</h6>
+        <p class="card-text">Description:{{ u.description }}</p>
+        @for (item of items; track $index) {}
+
+        <p class="card-text">Cost:{{ u.price }}</p>
+        <img src="{{ u.image }}" height="300" width="300" />
+        <p class="card-text">Rating:{{ u.rating.rate }}</p>
+        <p class="card-text">Count:{{ u.rating.count }}</p>
+        <p>
+          <fa-icon [icon]="star" />
+        </p>
+      </div>
+    </div>
+  </div>
+  }
+  <div class="col-sm-4 offset-4 mt-2">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
