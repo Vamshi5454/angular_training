@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
+// import { faStarRegular } from '@fortawesome/free-regular-svg-icons';
 
 import assignData from './assignment_data';
 
@@ -19,14 +18,12 @@ export class Assignment19 {
   data = assignData;
   p: number = 1;
   title: string = '';
-  faTrash = faTrash;
 
   star = faStar;
+  halfStar = faStarHalfAlt;
+  // emptyStar = faStarRegular;
 
   filtered: any[] = this.data;
-
-
-  // const stars: ('full'|'half'|'empty')[] = [];
 
   fileterdData() {
     this.filtered = this.data.filter((d) => {

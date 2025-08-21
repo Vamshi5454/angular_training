@@ -1,0 +1,108 @@
+<h3 class="text-center">Employee List</h3>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3 class="text-center mb-4">Employee Form</h3>
+
+      <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input
+          type="text"
+          id="Name"
+          class="form-control"
+          placeholder="Enter Name"
+          #name
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="Designation" class="form-label">Designation</label>
+        <input
+          type="text"
+          id="Designation"
+          class="form-control"
+          placeholder="Enter Designation"
+          #designation
+        />
+      </div>
+      <div class="mb-3">
+        <label for="Designation" class="form-label">Designation</label>
+        <input
+          type="text"
+          id="Designation"
+          class="form-control"
+          placeholder="Enter Designation"
+          #department
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="Salary" class="form-label">Salary</label>
+        <input
+          type="text"
+          id="Salary"
+          class="form-control"
+          placeholder="Enter Salary"
+          #salary
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="Email"
+          class="form-control"
+          placeholder="Enter Email"
+          #email
+        />
+      </div>
+
+      <button
+        class="btn btn-primary w-100"
+        (click)="
+          addemployee(
+            name.value,
+            designation.value,
+            department.value,
+            salary.value,
+            email.value
+          )
+        "
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Designation</th>
+      <th>Department</th>
+      <th>Salary</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (emp of filtered; track emp.id) {
+    <tr>
+      <td>{{ emp.id }}</td>
+      <td>{{ emp.name }}</td>
+      <td>{{ emp.designation }}</td>
+      <td>{{ emp.department }}</td>
+      <td>{{ emp.salary }}</td>
+      <td>{{ emp.email }}</td>
+      <td>
+        <fa-icon [icon]="faTrash" (click)="deleteId(emp.id)" />
+        <fa-icon [icon]="faEye" class="mx-2" />
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

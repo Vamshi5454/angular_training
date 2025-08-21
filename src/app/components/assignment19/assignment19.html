@@ -23,7 +23,23 @@
         <h5 class="card-title">{{ u.title }}</h5>
         <h6 class="card-subtitle">{{ u.category }}</h6>
         <p class="card-text">Description:{{ u.description }}</p>
-        @for (item of items; track $index) {}
+        <p class="card-text">Rating: {{ u.rating.rate }}</p>
+        
+
+        
+        <p class="card-text">
+          Rating: @for (i of [].constructor(5); track $index) { @if
+          (u.rating.rate >= $index + 1) {
+          <!-- full star -->
+          <fa-icon [icon]="star" class="text-warning"></fa-icon>
+          } @else if (u.rating.rate >= $index + 0.5) {
+          <!-- half star -->
+          <fa-icon [icon]="halfStar" class="text-warning"></fa-icon>
+          <!-- } @else { -->
+          <!-- empty star (regular outline) -->
+          <!-- <fa-icon [icon]="emptyStar" class="text-muted"></fa-icon> -->
+          } }
+        </p>
 
         <p class="card-text">Cost:{{ u.price }}</p>
         <img src="{{ u.image }}" height="300" width="300" />
