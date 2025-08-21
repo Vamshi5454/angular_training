@@ -1,0 +1,143 @@
+<h3 class="text-center">Let's Learn Angular Pipes</h3>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <h5>uppercase , lowercase, titlecase pipe:</h5>
+  <div>Name without any pipe: {{ myName }}</div>
+  <div>Name with uppercase pipe: {{ myName | uppercase }}</div>
+  <div>Name with lowercase pipe: {{ myName | lowercase }}</div>
+  <div>Name with titlecase pipe: {{ myName | titlecase }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <h5>Currency pipe:</h5>
+  <div>mySal without any pipe: {{ mySal }}</div>
+  <div>mySal with currency pipe: {{ mySal | currency }}</div>
+  <div>mySal with currency pipe: {{ mySal | currency : "USD" : "symbol" }}</div>
+  <div>mySal with currency pipe: {{ mySal | currency : "USD" : "code" }}</div>
+  <div>mySal with currency pipe: {{ mySal | currency : "INR" }}</div>
+  <!-- input | pipeName : Argument -->
+  <div>mySal with currency pipe: {{ mySal | currency : "&euro;" }}</div>
+  <div>mySal with currency pipe: {{ mySal | currency : "&#x5143;" }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <h5>Date pipe:</h5>
+  <div>{{ today }}</div>
+  <div>{{ today | date }}</div>
+  <div>{{ today | date : "shortDate" }}</div>
+  <div>{{ today | date : "mediumDate" }}</div>
+  <div>{{ today | date : "longDate" }}</div>
+  <div>{{ today | date : "fullDate" }}</div>
+  <div>{{ today | date : "shortTime" }}</div>
+  <div>{{ today | date : "mediumTime" }}</div>
+  <div>{{ today | date : "longTime" }}</div>
+  <div>{{ today | date : "fullTime" }}</div>
+
+  <!-- custom Formatting -->
+  <div>{{ today | date : "dd / MMM / yyyy" }}</div>
+
+  <!-- Pipe Chaining -->
+  <div>{{ today | date : "dd / MMMM / yyyy" | lowercase }}</div>
+  <div>{{ today | date : "dd / MMMM / yyyy" | uppercase }}</div>
+  <div>{{ today | date : "dd / MMMM / yyyy" }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <h5>Number/Decimal & percent pipe:</h5>
+  <div>{{ 12.111222333 | number : "3.2-5" }}</div>
+  <div>{{ 2.5 | number : "3.2-5" }}</div>
+
+  <div>{{ 2.5 | percent }}</div>
+  <div>{{ 0.7 | percent }}</div>
+  <div>{{ 0.064 | percent }}</div>
+  <div>{{ 0.065 | percent }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <h5>json pipe:</h5>
+  <div>{{ user | json }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <h5>keyvalue pipe:</h5>
+  @for(entry of user | keyvalue;track $index){
+  <div>{{ entry.key }}---{{ entry.value }}</div>
+  }
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <h5>slice pipe:</h5>
+  <div>{{ arr }}</div>
+  <div>{{ arr | slice : 2 }}</div>
+  <div>{{ arr | slice : 2 : 5 }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <h5>async pipe:</h5>
+  <div>Observable:: {{ num }}</div>
+  <div>Subscribe the Observable:: {{ num | async }}</div>
+</div>
+
+<div class="border border-3 rounded-3 p-2 m-2">
+  <h5>Custom pipe (Remaining Char):</h5>
+
+  <div class="border border-3 rounded-3 p-2 m-2">
+    <h4>1st question</h4>
+    <div>ordianl of number 21 {{ 21 | ordianl }}</div>
+    <div>ordianl of number 22 {{ 22 | ordianl }}</div>
+    <div>ordianl of number 23 {{ 23 | ordianl }}</div>
+    <div>ordianl of number 24 {{ 24 | ordianl }}</div>
+  </div>
+
+  <div class="border border-3 rounded-3 p-2 m-2">
+    <h4>3rd question</h4>
+    <p>"2020-06-04" = {{ "2020-06-04" | age }}</p>
+  </div>
+
+  <div class="border border-3 rounded-3 p-2 m-2">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (e of employees; track $index) {
+        <tr>
+          <td>{{ e.id }}</td>
+          <td>{{ e.name | salutation : e.gender }}</td>
+          <td>{{ e.gender }}</td>
+          <td>{{ e.age }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="border border-3 rounded-3 p-2 m-2">
+    <input type="text" [(ngModel)]="searchText" />
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (e of employees|search:searchText; track $index) {
+        <tr>
+          <td>{{ e.id }}</td>
+          <td>{{ e.name }}</td>
+          <td>{{ e.gender }}</td>
+          <td>{{ e.age }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

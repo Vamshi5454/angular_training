@@ -57,7 +57,6 @@ export class EmployeeCRUD {
     const nextId = this.filtered.length
       ? Math.max(...this.employees.map((e) => e.id)) + 1
       : 1;
-    
 
     const emp = {
       id: nextId,

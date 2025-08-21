@@ -9,11 +9,12 @@ import { Databinding } from './components/databinding/databinding';
 import { Directives } from './components/directives/directives';
 import { Assignment19 } from './components/assignment19/assignment19';
 import { EmployeeCRUD } from './components/employee-crud/employee-crud';
-import { EmployeeList } from "./components/employee-list/employee-list";
+import { EmployeeList } from './components/employee-list/employee-list';
+import { PipesDemo } from './components/pipes-demo/pipes-demo';
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, Categories, Footer,  EmployeeCRUD],
+  imports: [Navbar, Categories, Footer, PipesDemo],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
