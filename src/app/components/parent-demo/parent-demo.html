@@ -1,0 +1,21 @@
+<div class="container border border-3 my-2">
+  <div class="row text-center">
+    <h3>This is Parent Component</h3>
+    <div>My Own Data a is:: {{ a }}</div>
+    <!-- <div>I can pull the data from any of my child:: {{ child2.b }}</div> -->
+    <div>I can Receive the data from any of my child:: {{ parentName }}</div>
+    <div>
+      <input type="number" [(ngModel)]="a" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 border border-3 my-2">
+      <!-- <app-child1-demo [a]="a" [b]="child2.b"></app-child1-demo> -->
+      <app-child1-demo></app-child1-demo>
+    </div>
+    <div class="col-sm-6 border border-3 my-2">
+      <!-- <app-child2-demo [aChild2]="a" #child2 (nameEvent)="receiveDataFromChild($event)"></app-child2-demo> -->
+      <app-child2-demo></app-child2-demo>
+    </div>
+  </div>
+</div>

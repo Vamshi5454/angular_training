@@ -1,0 +1,42 @@
+<!-- <p>employee-crud-parent works!</p>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Designation</th>
+      <th>Department</th>
+      <th>Salary</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (emp of employees; track emp.id) {
+    <tr>
+      <td>{{ emp.id }}</td>
+      <td>{{ emp.name }}</td>
+      <td>{{ emp.designation }}</td>
+      <td>{{ emp.department }}</td>
+      <td>{{ emp.salary }}</td>
+      <td>{{ emp.email }}</td>
+      <td>
+        <fa-icon [icon]="faTrash" (click)="deleteId(emp.id)" />
+        <fa-icon [icon]="faEye" class="mx-2" />
+      </td>
+    </tr>
+    }
+  </tbody>
+</table> -->
+
+
+<h2 class="text-center">Employee Management</h2>
+<app-employee-add (employeeAdded)="addEmployee($event)"></app-employee-add>
+
+<hr />
+
+<app-employee-table
+  [employees]="employees"
+  (employeeDeleted)="deleteEmployee($event)">
+</app-employee-table>

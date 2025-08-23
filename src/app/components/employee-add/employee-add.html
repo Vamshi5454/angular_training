@@ -1,0 +1,10 @@
+<p>employee-add works!</p>
+<h3>Add New Employee</h3>
+<form (ngSubmit)="addEmployee()">
+  <input [(ngModel)]="newEmployee.name" name="name" placeholder="Name" required />
+  <input [(ngModel)]="newEmployee.designation" name="designation" placeholder="Designation" required />
+  <input [(ngModel)]="newEmployee.department" name="department" placeholder="Department" required />
+  <input [(ngModel)]="newEmployee.salary" name="salary" type="number" placeholder="Salary" required />
+  <input [(ngModel)]="newEmployee.email" name="email" placeholder="Email" required />
+  <button type="submit">Add</button>
+</form>
