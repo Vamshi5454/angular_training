@@ -1,0 +1,36 @@
+<p>assign-services works!</p>
+
+<h3 class="text-center">Employee List</h3>
+
+<select (change)="onFilteChange($event.target.value)">
+  <option value="all">All Employees</option>
+  <option value="male">Male Employees</option>
+  <option value="female">Female Employee</option>
+</select>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>gender</th>
+      <th>Designation</th>
+      <th>Department</th>
+      <th>Salary</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (emp of employees ; track $index) {
+    <tr>
+      <td>{{ emp.id }}</td>
+      <td>{{ emp.name }}</td>
+      <td>{{ emp.gender }}</td>
+      <td>{{ emp.designation }}</td>
+      <td>{{ emp.department }}</td>
+      <td>{{ emp.salary }}</td>
+      <td>{{ emp.email }}</td>
+    </tr>
+    }
+  </tbody>
+</table>

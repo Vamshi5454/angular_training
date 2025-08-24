@@ -13,10 +13,11 @@ import { EmployeeList } from './components/employee-list/employee-list';
 import { PipesDemo } from './components/pipes-demo/pipes-demo';
 import { ParentDemo } from './components/parent-demo/parent-demo';
 import { EmployeeCrudParent } from './components/employee-crud-parent/employee-crud-parent';
+import { AssignServices } from './components/assign-services/assign-services';
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, Categories, ParentDemo,EmployeeCrudParent, Footer],
+  imports: [Navbar, Categories, AssignServices, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
