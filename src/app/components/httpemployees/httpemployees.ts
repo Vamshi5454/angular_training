@@ -19,7 +19,7 @@ export class Httpemployees {
   ngOnInit() {
     this.fetchEmployees();
   }
-
+  // to push the new employee to the 
   employee: Employees = {
     firstName: '',
     lastName: '',
