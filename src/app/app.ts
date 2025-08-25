@@ -14,10 +14,12 @@ import { PipesDemo } from './components/pipes-demo/pipes-demo';
 import { ParentDemo } from './components/parent-demo/parent-demo';
 import { EmployeeCrudParent } from './components/employee-crud-parent/employee-crud-parent';
 import { AssignServices } from './components/assign-services/assign-services';
+import { HttpPractice } from './components/http-practice/http-practice';
+import { Httpemployees } from './components/httpemployees/httpemployees';
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, Categories, AssignServices, Footer],
+  imports: [Navbar, Categories, Footer, Httpemployees],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

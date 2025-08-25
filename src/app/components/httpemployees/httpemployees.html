@@ -1,0 +1,56 @@
+<form class="form" (ngSubmit)="addEmployee()">
+  <input
+    [(ngModel)]="employee.firstName"
+    name="firstName"
+    placeholder="First Name"
+  />
+  <input
+    [(ngModel)]="employee.lastName"
+    name="lastName"
+    placeholder="last name"
+  />
+  <input [(ngModel)]="employee.email" name="email" placeholder="email" />
+  <input [(ngModel)]="employee.gender" name="gender" placeholder="gender" />
+  <input [(ngModel)]="employee.sal" name="salary" placeholder="salary" />
+  <button class="btn btn-success">Add employee</button>
+  <button class="btn btn-primary" (click)="onUpdate()">Update Employee</button>
+</form>
+@if(!isLoading){
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th>Salary</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (emp of employeeArr; track $index) {
+    <tr>
+      <td>{{ $index }}</td>
+      <td>{{ emp.firstName }}</td>
+      <td>{{ emp.lastName }}</td>
+      <td>{{ emp.email }}</td>
+      <td>{{ emp.gender }}</td>
+      <td>{{ emp.sal }}</td>
+      <td>
+        <button class="btn btn-danger" (click)="onDelete(emp.id)">
+          Delete
+        </button>
+        <button class="btn btn-primary" (click)="onEdit(emp)">Edit</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+} @else {
+<img
+  src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"
+  alt=""
+/>
+}
