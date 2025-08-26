@@ -19,7 +19,7 @@ export class Httpemployees {
   ngOnInit() {
     this.fetchEmployees();
   }
-  // to push the new employee to the 
+  // to push the new employee to the
   employee: Employees = {
     firstName: '',
     lastName: '',
@@ -27,7 +27,8 @@ export class Httpemployees {
     gender: '',
     sal: 0,
   };
-  editEmployee: Employees | null = this.employee;
+  // editEmployee: Employees | null = this.employee;
+  editEmployee!: Employees;
 
   fetchEmployees() {
     this.isLoading = true;
@@ -63,33 +64,25 @@ export class Httpemployees {
     console.log(this.editEmployee);
   }
 
-  // onUpdate() {
-  //   this.httpClient
-  //     .patch(`${this.employee_api_url}/${this.editEmployee.id}`, this.employee)
-  //     .subscribe(() => {
-  //       console.log("employee updated");
-  //     });
-  // }
-
   onUpdate() {
-    if (this.editEmployee && this.editEmployee.id) {
-      this.httpClient
-        .patch(
-          `${this.employee_api_url}/${this.editEmployee.id}`,
-          this.editEmployee
-        )
-        .subscribe(() => {
-          console.log('employee updated');
-          this.fetchEmployees();
-          this.editEmployee = null;
-          this.employee = {
-            firstName: '',
-            lastName: '',
-            email: '',
-            gender: '',
-            sal: 0,
-          };
-        });
-    }
+    this.httpClient
+      .patch(
+        `${this.employee_api_url}/${this.editEmployee.id}`,
+        this.editEmployee
+      )
+      .subscribe(() => {
+        console.log('employee updated');
+        this.fetchEmployees();
+
+        //to make the form empty again
+        // this.editEmployee = null;
+        this.employee = {
+          firstName: '',
+          lastName: '',
+          email: '',
+          gender: '',
+          sal: 0,
+        };
+      });
   }
 }
