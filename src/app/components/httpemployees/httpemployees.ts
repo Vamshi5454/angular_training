@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Employees } from '../../models/employees';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Employee } from '../../services/EmployeeService/employee';
+import { Empoyeeser } from '../../services/httpemployees/empoyeeser';
 @Component({
   selector: 'app-httpemployees',
   imports: [CommonModule, FormsModule],
@@ -11,14 +11,20 @@ import { Employee } from '../../services/EmployeeService/employee';
   styleUrl: './httpemployees.css',
 })
 export class Httpemployees {
-  employee_api_url = 'http://localhost:3000/employees';
+  // employee_api_url = 'http://localhost:3000/employees';
   isLoading: boolean = false;
   employeeArr: Employees[] = [];
 
-  constructor(private httpClient: HttpClient) {}
+  // constructor(private httpClient: HttpClient) {}
+  // ngOnInit() {
+  //   this.fetchEmployees();
+  // }
+
+  constructor(private employeeservice: Empoyeeser) {}
   ngOnInit() {
     this.fetchEmployees();
   }
+
   // to push the new employee to the
   employee: Employees = {
     firstName: '',
@@ -30,31 +36,57 @@ export class Httpemployees {
   // editEmployee: Employees | null = this.employee;
   editEmployee!: Employees;
 
+  // fetchEmployees() {
+  //   this.isLoading = true;
+  //   this.httpClient
+  //     .get<Employees[]>(this.employee_api_url)
+  //     .subscribe((response: Employees[]) => {
+  //       this.isLoading = false;
+  //       this.employeeArr = response;
+  //     });
+  // }
+
   fetchEmployees() {
-    this.isLoading = true;
-    this.httpClient
-      .get<Employees[]>(this.employee_api_url)
-      .subscribe((response: Employees[]) => {
+    this.employeeservice
+      .getAllEmployees()
+      .subscribe((response:any) => {
         this.isLoading = false;
         this.employeeArr = response;
       });
   }
 
+  // onDelete(id: number) {
+  //   this.httpClient.delete(`${this.employee_api_url}/${id}`).subscribe(() => {
+  //     console.log('employee deleted');
+  //     this.fetchEmployees();
+  //   });
+  // }
+
   onDelete(id: number) {
-    this.httpClient.delete(`${this.employee_api_url}/${id}`).subscribe(() => {
-      console.log('employee deleted');
-      this.fetchEmployees();
-    });
+    this.employeeservice
+      .deleteEmployee(id)
+      .subscribe((response:any) => {
+        console.log(response);
+        this.fetchEmployees();
+      });
   }
+
+  // addEmployee() {
+  //   if (!this.employee.id) {
+  //     this.httpClient
+  //       .post(this.employee_api_url, this.employee)
+  //       .subscribe(() => {
+  //         console.log('employee added');
+  //         this.fetchEmployees();
+  //       });
+  //   }
+  // }
 
   addEmployee() {
     if (!this.employee.id) {
-      this.httpClient
-        .post(this.employee_api_url, this.employee)
-        .subscribe(() => {
-          console.log('employee added');
-          this.fetchEmployees();
-        });
+      this.employeeservice.addEmployee(this.employee).subscribe(() => {
+        this.fetchEmployees();
+      });
     }
   }
 
@@ -64,18 +96,34 @@ export class Httpemployees {
     console.log(this.editEmployee);
   }
 
+  // onUpdate() {
+  //   this.httpClient
+  //     .patch(
+  //       `${this.employee_api_url}/${this.editEmployee.id}`,
+  //       this.editEmployee
+  //     )
+  //     .subscribe(() => {
+  //       console.log('employee updated');
+  //       this.fetchEmployees();
+
+  //       //to make the form empty again
+  //       // this.editEmployee = null;
+  //       this.employee = {
+  //         firstName: '',
+  //         lastName: '',
+  //         email: '',
+  //         gender: '',
+  //         sal: 0,
+  //       };
+  //     });
+  // }
+
   onUpdate() {
-    this.httpClient
-      .patch(
-        `${this.employee_api_url}/${this.editEmployee.id}`,
-        this.editEmployee
-      )
+    this.employeeservice
+      .updateEmployee(this.editEmployee.id, this.editEmployee)
       .subscribe(() => {
         console.log('employee updated');
         this.fetchEmployees();
-
-        //to make the form empty again
-        // this.editEmployee = null;
         this.employee = {
           firstName: '',
           lastName: '',
