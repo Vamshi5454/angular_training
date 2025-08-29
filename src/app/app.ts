@@ -16,10 +16,13 @@ import { EmployeeCrudParent } from './components/employee-crud-parent/employee-c
 import { AssignServices } from './components/assign-services/assign-services';
 import { HttpPractice } from './components/http-practice/http-practice';
 import { Httpemployees } from './components/httpemployees/httpemployees';
+import { ObservableDemo1 } from './components/observable-demo1/observable-demo1';
+import { ObservableDemo2 } from './components/observable-demo2/observable-demo2';
+import { SubjectEmployees } from './components/subject-employees/subject-employees';
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, Categories, Footer, Httpemployees],
+  imports: [Navbar, Categories, Footer, SubjectEmployees],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

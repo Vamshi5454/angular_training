@@ -12,6 +12,8 @@ import { Empoyeeser } from '../../services/httpemployees/empoyeeser';
 })
 export class Httpemployees {
   // employee_api_url = 'http://localhost:3000/employees';
+
+
   isLoading: boolean = false;
   employeeArr: Employees[] = [];
 
@@ -26,6 +28,7 @@ export class Httpemployees {
   }
 
   // to push the new employee to the
+
   employee: Employees = {
     firstName: '',
     lastName: '',
@@ -33,7 +36,10 @@ export class Httpemployees {
     gender: '',
     sal: 0,
   };
+
   // editEmployee: Employees | null = this.employee;
+
+
   editEmployee!: Employees;
 
   // fetchEmployees() {
@@ -123,14 +129,16 @@ export class Httpemployees {
       .updateEmployee(this.editEmployee.id, this.editEmployee)
       .subscribe(() => {
         console.log('employee updated');
+
         this.fetchEmployees();
+
         this.employee = {
           firstName: '',
           lastName: '',
           email: '',
           gender: '',
           sal: 0,
-        };
+        }; 
       });
   }
 }

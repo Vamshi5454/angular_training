@@ -19,4 +19,7 @@ export class Empoyeeser {
   deleteEmployee(empId: any) {
     return this.httpClient.delete(`${this.emp_api_url}/${empId}`);
   }
+
+  
+
 }
