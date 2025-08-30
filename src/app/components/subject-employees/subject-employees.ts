@@ -9,14 +9,23 @@ import { EmployeeSub } from '../../services/subjectEmployeeser/employee-sub';
   styleUrl: './subject-employees.css',
 })
 export class SubjectEmployees {
-  employee$!: any;
+  // employee$!: any;
   constructor(private employeeService: EmployeeSub) {}
+  empdata: any;
 
   ngOnInit() {
-    this.employee$ = this.employeeService.employees$;
-    this.employeeService.getAllEmployees().subscribe((list: any) => {
-      this.employeeService.setEmployees(list);
+    // this.employee$ = this.employeeService.employees$;
+    // this.employeeService.loadEmployess().subscribe((list: any) => {
+    //   //   this.employeeService.setEmployees(list);
+    // });
+
+    this.employeeService.employees$.subscribe((list: any) => {
+      this.empdata = list;
     });
+    this.employeeService.loadEmployess();
+    // this.employeeService.employees$.subscribe((data: any) => {
+    //   console.log(data);
+    // });
   }
 
   employee: any = {
@@ -28,27 +37,22 @@ export class SubjectEmployees {
   };
 
   addEmployee() {
-    this.employeeService
-      .addEmployee(this.employee)
-      .subscribe((created: any) => {
-        const updated = [...this.employeeService.currentEmployees, created];
-        this.employee = {
-          firstName: '',
-          lastName: '',
-          email: '',
-          gender: '',
-          sal: 0,
-        };
-      });
+    this.employeeService.addEmployee(this.employee);
+
+    // .subscribe((created: any) => {
+    //   const updated = [...this.employeeService.currentEmployees(), created];
+    this.employee = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      gender: '',
+      sal: 0,
+    };
+    // });
+  }
+  onDelete(id:any){
+    this.employeeService.deleteEmployee(id)
   }
 
-  onDelete(id: any) {
-    this.employeeService.deleteEmployee(id).subscribe(() => {
-      // const updated = this.employeeService.getAllEmployees();
-      const updated = this.employeeService.currentEmployees.filter(
-        (e: any) => e.id !== id
-      );
-      this.employeeService.setEmployees(updated);
-    });
-  }
+  
 }

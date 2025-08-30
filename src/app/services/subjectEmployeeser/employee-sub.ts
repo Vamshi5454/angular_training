@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
-
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,31 +11,54 @@ export class EmployeeSub {
   constructor(private httpClient: HttpClient) {}
   private employeeSubject = new BehaviorSubject<any[]>([]);
 
-  employees$ = this.employeeSubject.asObservable();
+  employees$: Observable<any> = this.employeeSubject.asObservable();
 
-  getAllEmployees() {
-    return this.httpClient.get<any[]>(this.emp_api_url);
+  // sampledata(data: any) {
+  //   this.employees$.next(data);
+  // }
+
+  loadEmployess() {
+    this.httpClient.get(this.emp_api_url).subscribe((list: any) => {
+      this.employeeSubject.next(list);
+    });
   }
-  addEmployee(empToAdd: Object) {
-    return this.httpClient.post(this.emp_api_url, empToAdd);
+
+  addEmployee(emp: any) {
+    this.httpClient.post(this.emp_api_url, emp).subscribe((created: any) => {
+      const updated = [...this.employeeSubject.value, created];
+      this.employeeSubject.next(updated);
+    });
   }
+
   deleteEmployee(empId: any) {
-    return this.httpClient.delete(`${this.emp_api_url}/${empId}`);
+    this.httpClient.delete(`${this.emp_api_url}/${empId}`).subscribe(() => {
+      this.loadEmployess();
+    });
   }
 
-  get value() {
-    return this.employeeSubject.value;
-  }
+  // getAllEmployees() {
+  //   return this.httpClient.get<any[]>(this.emp_api_url);
+  // }
+  // addEmployee(empToAdd: Object) {
+  //   return this.httpClient.post(this.emp_api_url, empToAdd);
+  // }
+  // deleteEmployee(empId: any) {
+  //   return this.httpClient.delete(`${this.emp_api_url}/${empId}`);
+  // }
 
-  setEmployees(list: any[]) {
-    this.employeeSubject.next(list);
-  }
+  // value() {
+  //   return this.employeeSubject.value;
+  // }
 
-  get currentEmployees() {
-    return this.employeeSubject.value;
-  }
+  // setEmployees(list: any[]) {
+  //   this.employeeSubject.next(list);
+  // }
 
-  clearEmployees() {
-    this.employeeSubject.next([]);
-  }
+  // currentEmployees() {
+  //   return this.employeeSubject.value;
+  // }
+
+  // clearEmployees() {
+  //   this.employeeSubject.next([]);
+  // }
 }

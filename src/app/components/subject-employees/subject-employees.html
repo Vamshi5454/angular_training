@@ -14,7 +14,6 @@
   <input [(ngModel)]="employee.gender" name="gender" placeholder="gender" />
   <input [(ngModel)]="employee.sal" name="salary" placeholder="salary" />
   <button class="btn btn-success">Add employee</button>
-
 </form>
 
 <table class="table table-bordered table-striped">
@@ -30,7 +29,7 @@
     </tr>
   </thead>
   <tbody>
-    @for (emp of employee$ | async; track $index) {
+    @for (emp of empdata; track $index) {
     <tr>
       <td>{{ $index }}</td>
       <td>{{ emp.firstName }}</td>
@@ -46,5 +45,5 @@
     </tr>
     }
   </tbody>
+  
 </table>
-
