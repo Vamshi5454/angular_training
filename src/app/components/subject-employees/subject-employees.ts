@@ -14,18 +14,12 @@ export class SubjectEmployees {
   empdata: any;
 
   ngOnInit() {
-    // this.employee$ = this.employeeService.employees$;
-    // this.employeeService.loadEmployess().subscribe((list: any) => {
-    //   //   this.employeeService.setEmployees(list);
-    // });
-
+    
     this.employeeService.employees$.subscribe((list: any) => {
       this.empdata = list;
     });
     this.employeeService.loadEmployess();
-    // this.employeeService.employees$.subscribe((data: any) => {
-    //   console.log(data);
-    // });
+    
   }
 
   employee: any = {
@@ -38,9 +32,7 @@ export class SubjectEmployees {
 
   addEmployee() {
     this.employeeService.addEmployee(this.employee);
-
-    // .subscribe((created: any) => {
-    //   const updated = [...this.employeeService.currentEmployees(), created];
+    
     this.employee = {
       firstName: '',
       lastName: '',
@@ -48,7 +40,6 @@ export class SubjectEmployees {
       gender: '',
       sal: 0,
     };
-    // });
   }
   onDelete(id:any){
     this.employeeService.deleteEmployee(id)

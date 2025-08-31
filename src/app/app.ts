@@ -19,10 +19,11 @@ import { Httpemployees } from './components/httpemployees/httpemployees';
 import { ObservableDemo1 } from './components/observable-demo1/observable-demo1';
 import { ObservableDemo2 } from './components/observable-demo2/observable-demo2';
 import { SubjectEmployees } from './components/subject-employees/subject-employees';
+import { SignalDemo } from './components/signal-demo/signal-demo';
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, Categories, Footer, SubjectEmployees],
+  imports: [Navbar, Categories, Footer, SignalDemo],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

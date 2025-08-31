@@ -13,9 +13,6 @@ export class EmployeeSub {
 
   employees$: Observable<any> = this.employeeSubject.asObservable();
 
-  // sampledata(data: any) {
-  //   this.employees$.next(data);
-  // }
 
   loadEmployess() {
     this.httpClient.get(this.emp_api_url).subscribe((list: any) => {
@@ -35,30 +32,4 @@ export class EmployeeSub {
       this.loadEmployess();
     });
   }
-
-  // getAllEmployees() {
-  //   return this.httpClient.get<any[]>(this.emp_api_url);
-  // }
-  // addEmployee(empToAdd: Object) {
-  //   return this.httpClient.post(this.emp_api_url, empToAdd);
-  // }
-  // deleteEmployee(empId: any) {
-  //   return this.httpClient.delete(`${this.emp_api_url}/${empId}`);
-  // }
-
-  // value() {
-  //   return this.employeeSubject.value;
-  // }
-
-  // setEmployees(list: any[]) {
-  //   this.employeeSubject.next(list);
-  // }
-
-  // currentEmployees() {
-  //   return this.employeeSubject.value;
-  // }
-
-  // clearEmployees() {
-  //   this.employeeSubject.next([]);
-  // }
 }
